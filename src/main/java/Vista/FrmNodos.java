@@ -1,4 +1,4 @@
-package vista;
+package Vista;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -7,11 +7,10 @@ import java.awt.*;
 /**
  * @author Andre Mujica
  **/
-public class FrmLocales extends JPanel {
+public class FrmNodos extends JPanel {
 
     private JLabel jLabel1;
     private JScrollPane jScrollPane1;
-    private JButton jbtnActualizar;
     public JButton jbtnBuscar;
     public JButton jbtnEditar;
     public JButton jbtnNuevo;
@@ -20,7 +19,7 @@ public class FrmLocales extends JPanel {
     public JTable jtblTrabajadores;
     public JTextField jtxtCodigo;
 
-    public FrmLocales() {
+    public FrmNodos() {
         jpnCabecera = new JPanel();
         jLabel1 = new JLabel();
         jtxtCodigo = new JTextField();
@@ -30,7 +29,6 @@ public class FrmLocales extends JPanel {
         jpnBotones = new JPanel();
         jbtnNuevo = new JButton();
         jbtnEditar = new JButton();
-        jbtnActualizar = new JButton();
 
         setLayout(new BorderLayout());
 
@@ -47,7 +45,6 @@ public class FrmLocales extends JPanel {
         jtxtCodigo.setPreferredSize(new Dimension(200, 40));
         jpnCabecera.add(jtxtCodigo);
 
-        jbtnBuscar.setFont(new Font("Monospaced", 1, 15)); // NOI18N
         jbtnBuscar.setText("BUSCAR");
         jbtnBuscar.setPreferredSize(new Dimension(100, 40));
         jpnCabecera.add(jbtnBuscar);
@@ -70,7 +67,7 @@ public class FrmLocales extends JPanel {
         jpnBotones.setPreferredSize(new Dimension(1300, 80));
         jpnBotones.setLayout(new FlowLayout(FlowLayout.RIGHT, 20, 20));
 
-        jbtnNuevo.setFont(new Font("Monospaced", 1, 15)); // NOI18N
+        jbtnNuevo.setFont(new Font("Monospaced", 0, 15)); // NOI18N
         jbtnNuevo.setText("NUEVO");
         jbtnNuevo.setPreferredSize(new Dimension(140, 40));
         jpnBotones.add(jbtnNuevo);
@@ -79,11 +76,6 @@ public class FrmLocales extends JPanel {
         jbtnEditar.setText("EDITAR");
         jbtnEditar.setPreferredSize(new Dimension(140, 40));
         jpnBotones.add(jbtnEditar);
-
-        jbtnActualizar.setFont(new Font("Monospaced", 1, 15)); // NOI18N
-        jbtnActualizar.setText("ACTUALIZAR");
-        jbtnActualizar.setPreferredSize(new Dimension(140, 40));
-        jpnBotones.add(jbtnActualizar);
 
         add(jpnBotones, BorderLayout.PAGE_END);
     }

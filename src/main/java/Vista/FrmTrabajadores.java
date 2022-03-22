@@ -1,25 +1,32 @@
-package vista;
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
+ */
+package Vista;
 
-import javax.swing.*;
+import  javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 
+
 /**
+ *
  * @author Andre Mujica
- **/
-public class FrmNodos extends JPanel {
+ */
+public class FrmTrabajadores extends JPanel {
 
     private JLabel jLabel1;
     private JScrollPane jScrollPane1;
     public JButton jbtnBuscar;
     public JButton jbtnEditar;
+    public JButton jbtnEliminar;
     public JButton jbtnNuevo;
     private JPanel jpnBotones;
     private JPanel jpnCabecera;
     public JTable jtblTrabajadores;
     public JTextField jtxtCodigo;
 
-    public FrmNodos() {
+    public FrmTrabajadores() {
         jpnCabecera = new JPanel();
         jLabel1 = new JLabel();
         jtxtCodigo = new JTextField();
@@ -29,6 +36,7 @@ public class FrmNodos extends JPanel {
         jpnBotones = new JPanel();
         jbtnNuevo = new JButton();
         jbtnEditar = new JButton();
+        jbtnEliminar = new JButton();
 
         setLayout(new BorderLayout());
 
@@ -76,6 +84,11 @@ public class FrmNodos extends JPanel {
         jbtnEditar.setText("EDITAR");
         jbtnEditar.setPreferredSize(new Dimension(140, 40));
         jpnBotones.add(jbtnEditar);
+
+        jbtnEliminar.setFont(new Font("Monospaced", 1, 15)); // NOI18N
+        jbtnEliminar.setText("ELIMINAR");
+        jbtnEliminar.setPreferredSize(new Dimension(140, 40));
+        jpnBotones.add(jbtnEliminar);
 
         add(jpnBotones, BorderLayout.PAGE_END);
     }

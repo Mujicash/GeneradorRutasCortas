@@ -1,39 +1,35 @@
-package vista;
+package Vista;
 
 import javax.swing.*;
-import java.awt.*;
 import javax.swing.table.DefaultTableModel;
+import java.awt.*;
 
 /**
  * @author Andre Mujica
  **/
-public class FrmPedidos extends JPanel {
+public class FrmLocales extends JPanel {
 
     private JLabel jLabel1;
-    private JLabel jLabel2;
     private JScrollPane jScrollPane1;
     private JButton jbtnActualizar;
     public JButton jbtnBuscar;
+    public JButton jbtnEditar;
     public JButton jbtnNuevo;
-    public JButton jbtnOrdenar;
-    public JComboBox<String> jcbParametro;
     private JPanel jpnBotones;
     private JPanel jpnCabecera;
     public JTable jtblTrabajadores;
     public JTextField jtxtCodigo;
 
-    public FrmPedidos() {
+    public FrmLocales() {
         jpnCabecera = new JPanel();
         jLabel1 = new JLabel();
         jtxtCodigo = new JTextField();
         jbtnBuscar = new JButton();
-        jLabel2 = new JLabel();
-        jcbParametro = new JComboBox<>();
-        jbtnOrdenar = new JButton();
         jScrollPane1 = new JScrollPane();
         jtblTrabajadores = new JTable();
         jpnBotones = new JPanel();
         jbtnNuevo = new JButton();
+        jbtnEditar = new JButton();
         jbtnActualizar = new JButton();
 
         setLayout(new BorderLayout());
@@ -55,20 +51,6 @@ public class FrmPedidos extends JPanel {
         jbtnBuscar.setText("BUSCAR");
         jbtnBuscar.setPreferredSize(new Dimension(100, 40));
         jpnCabecera.add(jbtnBuscar);
-
-        jLabel2.setEnabled(false);
-        jLabel2.setPreferredSize(new Dimension(400, 40));
-        jpnCabecera.add(jLabel2);
-
-        jcbParametro.setFont(new Font("Monospaced", 1, 15)); // NOI18N
-        jcbParametro.setModel(new DefaultComboBoxModel<>(new String[] { "SELECCIONE PARAMETRO", "ID", "LOCAL", "FECHA DE REGISTRO" }));
-        jcbParametro.setPreferredSize(new Dimension(250, 40));
-        jpnCabecera.add(jcbParametro);
-
-        jbtnOrdenar.setFont(new Font("Monospaced", 1, 15)); // NOI18N
-        jbtnOrdenar.setText("ORDENAR");
-        jbtnOrdenar.setPreferredSize(new Dimension(150, 40));
-        jpnCabecera.add(jbtnOrdenar);
 
         add(jpnCabecera, BorderLayout.PAGE_START);
 
@@ -92,6 +74,11 @@ public class FrmPedidos extends JPanel {
         jbtnNuevo.setText("NUEVO");
         jbtnNuevo.setPreferredSize(new Dimension(140, 40));
         jpnBotones.add(jbtnNuevo);
+
+        jbtnEditar.setFont(new Font("Monospaced", 1, 15)); // NOI18N
+        jbtnEditar.setText("EDITAR");
+        jbtnEditar.setPreferredSize(new Dimension(140, 40));
+        jpnBotones.add(jbtnEditar);
 
         jbtnActualizar.setFont(new Font("Monospaced", 1, 15)); // NOI18N
         jbtnActualizar.setText("ACTUALIZAR");
