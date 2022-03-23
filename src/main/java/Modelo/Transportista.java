@@ -10,8 +10,8 @@ public class Transportista extends Usuario {
     public Transportista() {
     }
 
-    public Transportista(int idUsuario, String usuario, String contrasenia, int id_tipo, String nombres, String apellidos, String correo, String DNI, boolean habilitado) {
-        super(idUsuario, usuario, contrasenia, id_tipo, nombres, apellidos, correo, DNI);
+    public Transportista(int idUsuario, String usuario, String contrasenia, String nombres, String apellidos, String correo, String DNI, int id_tipo, boolean habilitado) {
+        super(idUsuario, usuario, contrasenia, nombres, apellidos, correo, DNI, id_tipo);
         this.habilitado = habilitado;
     }
 
