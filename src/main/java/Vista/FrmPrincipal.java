@@ -1,6 +1,10 @@
 
 package Vista;
 
+import Controlador.CtrlPrincipal;
+import Controlador.IControlador;
+import Modelo.IVista;
+
 import  javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -10,7 +14,7 @@ import java.awt.event.ActionListener;
  *
  * @author Andre Mujica
  */
-public class FrmPrincipal extends JFrame {
+public class FrmPrincipal extends IVista {
 
     public JMenuBar jmbBarraMenu;
     private JMenu jmenuGestionar;
@@ -115,4 +119,8 @@ public class FrmPrincipal extends JFrame {
         });
     }
 
+    @Override
+    public IControlador generarControlador() {
+        return new CtrlPrincipal(this);
+    }
 }

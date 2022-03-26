@@ -1,9 +1,13 @@
 package Modelo;
 
+import Controlador.CtrlPrincipal;
+import Controlador.IControlador;
+import Vista.FrmPrincipal;
+
 /**
  * @author Andre Mujica
  **/
-public class Usuario {
+public abstract class Usuario {
 
     private int idUsuario;
     private String usuario;
@@ -102,16 +106,12 @@ public class Usuario {
         this.DNI = DNI;
     }
 
-    /**
-     * Constructor para el inicio de sesión
-     * @param usuario -- Usuario registrado en el sistema
-     * @param contrasenia -- Contraseña del usuario
-     */
-    public Usuario(String usuario, String contrasenia) {
-        this.usuario = usuario;
-        this.contrasenia = contrasenia;
+    public IControlador generarControlador(){
+        IVista vista = new FrmPrincipal();
+        IControlador controlador = vista.generarControlador();
+        ((CtrlPrincipal) controlador).setConectado(this);
+        return controlador;
     }
-
 
     @Override
     public String toString() {

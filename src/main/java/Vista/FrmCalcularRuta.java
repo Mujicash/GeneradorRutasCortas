@@ -1,5 +1,8 @@
 package Vista;
 
+import Controlador.CtrlCalcularRutas;
+import Controlador.IControlador;
+import Modelo.IVista;
 import Util.FondoPanel;
 import javax.swing.*;
 import java.awt.*;
@@ -7,7 +10,7 @@ import java.awt.*;
 /**
  * @author Andre Mujica
  **/
-public class FrmCalcularRuta extends JFrame {
+public class FrmCalcularRuta extends IVista {
 
     private JLabel jLabel1;
     private JLabel jLabel2;
@@ -19,6 +22,7 @@ public class FrmCalcularRuta extends JFrame {
     public JTextField jtxtDestino;
 
     public FrmCalcularRuta() {
+        super("CALCULAR RUTA MAS CORTA");
         jPanel1 = new JPanel();
         jLabel1 = new JLabel();
         jcbOrigen = new JComboBox<>();
@@ -85,4 +89,8 @@ public class FrmCalcularRuta extends JFrame {
         });
     }
 
+    @Override
+    public IControlador generarControlador() {
+        return new CtrlCalcularRutas(this);
+    }
 }

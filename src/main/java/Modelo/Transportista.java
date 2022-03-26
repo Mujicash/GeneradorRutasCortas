@@ -18,4 +18,5 @@ public class Transportista extends Usuario {
     public void setHabilitado(boolean habilitado) {
         this.habilitado = habilitado;
     }
+
 }
