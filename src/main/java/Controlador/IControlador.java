@@ -5,5 +5,5 @@ package Controlador;
  **/
 public interface IControlador {
 
-    public void iniciar();
+    void iniciar();
 }

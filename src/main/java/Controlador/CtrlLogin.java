@@ -23,8 +23,8 @@ public class CtrlLogin implements ActionListener {
 
     private CtrlLogin() {
         vista = new FrmLogin();
-        TextPrompt tx1 = new TextPrompt("USUARIO", vista.jtxtUsuario);
-        TextPrompt tx2 = new TextPrompt("CONTRASEÑA", vista.jtxtContrasenia);
+        new TextPrompt("USUARIO", vista.jtxtUsuario);
+        new TextPrompt("CONTRASEÑA", vista.jtxtContrasenia);
         vista.jbtnIniciar.addActionListener(this);
     }
 
@@ -47,22 +47,22 @@ public class CtrlLogin implements ActionListener {
     public void actionPerformed(ActionEvent e) {
 
         if (e.getSource() == vista.jbtnIniciar){
-            Usuario connect;
+            Usuario conectado;
             String username = vista.jtxtUsuario.getText();
             String password = new String(vista.jtxtContrasenia.getPassword());
 
             if(!username.equals("") && !password.equals("")){
-                UsuarioDAO repo = new DBUsuarioDAO();
-                IPasswordHashLib gene = new Sha1();
-                VerificarUsuarioRegistrado vur = new VerificarUsuarioRegistrado(repo, gene);
-                connect = vur.validarCredenciales(username, password);
+                UsuarioDAO repositorio = new DBUsuarioDAO();
+                IPasswordHashLib generador = new Sha1();
+                VerificarUsuarioRegistrado vur = new VerificarUsuarioRegistrado(repositorio, generador);
+                conectado = vur.validarCredenciales(username, password);
 
-                if(connect != null){
+                if(conectado != null){
                     vista.setVisible(false);
                     instance = null;
-                    IControlador strategy = connect.generarControlador();
+                    IControlador userController = conectado.generarControlador();
                     ControllerStrategy cs = new ControllerStrategy();
-                    cs.setStrategy(strategy);
+                    cs.setStrategy(userController);
                     cs.executeStrategy();
                 }
                 else{
@@ -75,7 +75,6 @@ public class CtrlLogin implements ActionListener {
 
             limpiarCajas();
         }
-
     }
 
     public static void main(String[] args) {
