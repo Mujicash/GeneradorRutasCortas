@@ -1,8 +1,9 @@
 package Modelo;
 
+import Controlador.Controllers;
 import Controlador.CtrlPrincipal;
 import Controlador.IControlador;
-import Vista.FrmPrincipal;
+import Vista.IFrameView;
 
 /**
  * @author Andre Mujica
@@ -107,7 +108,7 @@ public abstract class Usuario {
     }
 
     public IControlador generarControlador(){
-        IVista vista = new FrmPrincipal();
+        IFrameView vista = IFrameView.Factory(Controllers.PRINCIPAL);
         IControlador controlador = vista.generarControlador();
         ((CtrlPrincipal) controlador).setConectado(this);
         return controlador;

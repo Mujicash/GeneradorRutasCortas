@@ -1,14 +1,11 @@
 package Controlador;
 
-import Modelo.Administrador;
 import Modelo.Transportista;
 import Modelo.Usuario;
-import Vista.FrmInformacionUsuario;
 import Vista.FrmPrincipal;
+import Vista.IPanelView;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 /**
  * @author Andre Mujica
@@ -16,28 +13,40 @@ import java.awt.event.ActionListener;
 public class CtrlPrincipal implements IControlador {
 
     private final FrmPrincipal vista;
-    private Usuario conectado;
+    private static Usuario conectado;
 
     public CtrlPrincipal(FrmPrincipal vista) {
         this.vista = vista;
-        this.vista.jmitPerfil.addActionListener(new ActionListener() {
+        this.vista.addWindowListener(new java.awt.event.WindowAdapter() {
             @Override
-            public void actionPerformed(ActionEvent e) {
-                jmitPedidosAction();
+            public void windowClosing(java.awt.event.WindowEvent e) {
+                formWindowClosing();
             }
         });
+        this.vista.jmitPerfil.addActionListener(e -> jmitPerfilAction());
+        this.vista.jmitSalir.addActionListener(e -> jmitSalirAction());
+        this.vista.jmitTrabajadores.addActionListener(e -> jmitTrabajadoresAction());
+        this.vista.jmitNodos.addActionListener(e -> jmitNodosAction());
+        this.vista.jmitLocales.addActionListener(e -> jmitLocalesAction());
+        this.vista.jmitPedidos.addActionListener(e -> jmitPedidosAction());
     }
 
     public void setConectado(Usuario conectado) {
-        this.conectado = conectado;
+        CtrlPrincipal.conectado = conectado;
+    }
+
+    public static Usuario getConectado() {
+        return conectado;
     }
 
     @Override
     public void iniciar() {
         if(conectado instanceof Transportista){
-            System.out.println("Transportista");
+            vista.jmitTrabajadores.setVisible(false);
+            vista.jmitLocales.setVisible(false);
+            vista.jmitNodos.setVisible(false);
         }
-        jmitPedidosAction();
+        jmitPerfilAction();
         System.out.println(conectado);
         vista.setLocationRelativeTo(null);
         vista.setVisible(true);
@@ -50,11 +59,37 @@ public class CtrlPrincipal implements IControlador {
         vista.jpnPrincipal.revalidate();
     }
 
-    private void jmitPedidosAction() {
-        FrmInformacionUsuario info = new FrmInformacionUsuario();
-        CtrlInformacionUsuario ctrl = new CtrlInformacionUsuario(info,conectado);
+    private void jmitPerfilAction() {
+        IPanelView info = IPanelView.Factory(Controllers.INFORMACIONUSUARIO);
+        IControlador ctrl = info.generarControlador();
         this.addNewPanel(info);
         ctrl.iniciar();
+    }
+
+    private void jmitPedidosAction() {
+    }
+
+    private void jmitLocalesAction() {
+    }
+
+    private void jmitNodosAction() {
+    }
+
+    private void jmitTrabajadoresAction() {
+        IPanelView workers = IPanelView.Factory(Controllers.TRABAJADORES);
+        IControlador ctrl = workers.generarControlador();
+        this.addNewPanel(workers);
+        ctrl.iniciar();
+    }
+
+    private void jmitSalirAction() {
+        vista.dispose();
+        formWindowClosing();
+    }
+
+    private void formWindowClosing() {
+        CtrlLogin login = CtrlLogin.getInstance();
+        login.iniciar();
     }
 
 }

@@ -3,22 +3,17 @@ package Vista;
 
 import Controlador.CtrlPrincipal;
 import Controlador.IControlador;
-import Modelo.IVista;
 
 import  javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 /**
  *
  * @author Andre Mujica
  */
-public class FrmPrincipal extends IVista {
+public class FrmPrincipal extends IFrameView {
 
     public JMenuBar jmbBarraMenu;
-    private JMenu jmenuGestionar;
-    private JMenu jmenuInformacion;
     public JMenuItem jmitLocales;
     public JMenuItem jmitNodos;
     public JMenuItem jmitPerfil;
@@ -31,16 +26,16 @@ public class FrmPrincipal extends IVista {
         super("MENU PRINCIPAL");
         jpnPrincipal = new JPanel();
         jmbBarraMenu = new JMenuBar();
-        jmenuInformacion = new JMenu();
+        JMenu jmenuInformacion = new JMenu();
         jmitPerfil = new JMenuItem();
         jmitSalir = new JMenuItem();
-        jmenuGestionar = new JMenu();
+        JMenu jmenuGestionar = new JMenu();
         jmitTrabajadores = new JMenuItem();
         jmitNodos = new JMenuItem();
         jmitLocales = new JMenuItem();
         jmitPedidos = new JMenuItem();
 
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
 
         jpnPrincipal.setPreferredSize(new Dimension(1300, 670));
@@ -50,7 +45,7 @@ public class FrmPrincipal extends IVista {
         jmbBarraMenu.setPreferredSize(new Dimension(1300, 30));
 
         jmenuInformacion.setText("INFORMACION");
-        jmenuInformacion.setFont(new Font("Monospaced", 1, 15)); // NOI18N
+        jmenuInformacion.setFont(new Font("Monospaced", Font.BOLD, 15)); // NOI18N
         jmenuInformacion.setMinimumSize(new Dimension(117, 30));
 
         jmitPerfil.setText("Perfil");
@@ -64,20 +59,14 @@ public class FrmPrincipal extends IVista {
         jmbBarraMenu.add(jmenuInformacion);
 
         jmenuGestionar.setText("GESTIONAR");
-        jmenuGestionar.setFont(new Font("Monospaced", 1, 15)); // NOI18N
+        jmenuGestionar.setFont(new Font("Monospaced", Font.BOLD, 15)); // NOI18N
         jmenuGestionar.setMinimumSize(new Dimension(101, 30));
 
         jmitTrabajadores.setText("Trabajadores");
         jmitTrabajadores.setPreferredSize(new Dimension(134, 25));
         jmenuGestionar.add(jmitTrabajadores);
-        jmitTrabajadores.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                jmitTrabajadoresAction();
-            }
-        });
 
-        jmitNodos.setText("jmitNodos");
+        jmitNodos.setText("Nodos");
         jmitNodos.setPreferredSize(new Dimension(113, 25));
         jmenuGestionar.add(jmitNodos);
 
@@ -94,29 +83,6 @@ public class FrmPrincipal extends IVista {
         setJMenuBar(jmbBarraMenu);
 
         pack();
-    }
-
-    private void jmitTrabajadoresAction() {
-        System.out.println("ini");
-        FrmTrabajadores vista = new FrmTrabajadores();
-        cambiarMenu(vista);
-        System.out.println("fin");
-    }
-
-    private void cambiarMenu(JPanel nuevo){
-        jpnPrincipal.removeAll();
-        jpnPrincipal.add(nuevo);
-        jpnPrincipal.repaint();
-        jpnPrincipal.revalidate();
-    }
-
-    public static void main(String[] args) {
-        EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                new FrmPrincipal().setVisible(true);
-            }
-        });
     }
 
     @Override

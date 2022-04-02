@@ -1,20 +1,18 @@
 package Vista;
 
+import Controlador.Controllers;
 import Controlador.CtrlCalcularRutas;
 import Controlador.IControlador;
-import Modelo.IVista;
 import Util.FondoPanel;
 import javax.swing.*;
 import java.awt.*;
+import java.util.Objects;
 
 /**
  * @author Andre Mujica
  **/
-public class FrmCalcularRuta extends IVista {
+public class FrmCalcularRuta extends IFrameView {
 
-    private JLabel jLabel1;
-    private JLabel jLabel2;
-    private JPanel jPanel1;
     public JButton jbtnCalcularRuta;
     public JButton jbtnEntregado;
     public JComboBox<String> jcbOrigen;
@@ -23,10 +21,10 @@ public class FrmCalcularRuta extends IVista {
 
     public FrmCalcularRuta() {
         super("CALCULAR RUTA MAS CORTA");
-        jPanel1 = new JPanel();
-        jLabel1 = new JLabel();
+        JPanel jPanel1 = new JPanel();
+        JLabel jLabel1 = new JLabel();
         jcbOrigen = new JComboBox<>();
-        jLabel2 = new JLabel();
+        JLabel jLabel2 = new JLabel();
         jtxtDestino = new JTextField();
         jbtnCalcularRuta = new JButton();
         jbtnEntregado = new JButton();
@@ -52,12 +50,12 @@ public class FrmCalcularRuta extends IVista {
         jtxtDestino.setPreferredSize(new Dimension(200, 40));
         jPanel1.add(jtxtDestino);
 
-        jbtnCalcularRuta.setIcon(new ImageIcon(getClass().getResource("/Imagenes/map.png"))); // NOI18N
+        jbtnCalcularRuta.setIcon(new ImageIcon(Objects.requireNonNull(getClass().getResource("/Imagenes/map.png")))); // NOI18N
         jbtnCalcularRuta.setText("CALCULAR RUTA");
         jbtnCalcularRuta.setPreferredSize(new Dimension(200, 40));
         jPanel1.add(jbtnCalcularRuta);
 
-        jbtnEntregado.setIcon(new ImageIcon(getClass().getResource("/Imagenes/deliverytruck_106577.png"))); // NOI18N
+        jbtnEntregado.setIcon(new ImageIcon(Objects.requireNonNull(getClass().getResource("/Imagenes/deliverytruck_106577.png")))); // NOI18N
         jbtnEntregado.setText("ENTREGADO");
         jbtnEntregado.setPreferredSize(new Dimension(180, 40));
         jPanel1.add(jbtnEntregado);
@@ -81,11 +79,9 @@ public class FrmCalcularRuta extends IVista {
     }
 
     public static void main(String[] args) {
-        EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                new FrmCalcularRuta().setVisible(true);
-            }
+        EventQueue.invokeLater(() -> {
+            IFrameView rutas = IFrameView.Factory(Controllers.RUTAS);
+            rutas.setVisible(true);
         });
     }
 

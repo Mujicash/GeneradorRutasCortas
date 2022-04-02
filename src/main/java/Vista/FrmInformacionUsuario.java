@@ -1,12 +1,15 @@
 package Vista;
 
+import Controlador.CtrlInformacionUsuario;
+import Controlador.IControlador;
+
 import javax.swing.*;
 import java.awt.*;
 
 /**
  * @author Andre Mujica
  **/
-public class FrmInformacionUsuario extends JPanel {
+public class FrmInformacionUsuario extends IPanelView {
 
     public JTextField jtxtApellidos;
     public JTextField jtxtCorreo;
@@ -213,5 +216,9 @@ public class FrmInformacionUsuario extends JPanel {
 
         add(jPanel1, BorderLayout.CENTER);
     }
-    
+
+    @Override
+    public IControlador generarControlador() {
+        return new CtrlInformacionUsuario(this);
+    }
 }

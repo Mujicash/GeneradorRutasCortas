@@ -6,14 +6,14 @@ import Vista.FrmInformacionUsuario;
 /**
  * @author Andre Mujica
  **/
-public class CtrlInformacionUsuario {
+public class CtrlInformacionUsuario implements IControlador {
 
     private final FrmInformacionUsuario vista;
     private final Usuario conectado;
 
-    public CtrlInformacionUsuario(FrmInformacionUsuario vista, Usuario conectado) {
+    public CtrlInformacionUsuario(FrmInformacionUsuario vista) {
         this.vista = vista;
-        this.conectado = conectado;
+        conectado = CtrlPrincipal.getConectado();
     }
 
     public void iniciar() {

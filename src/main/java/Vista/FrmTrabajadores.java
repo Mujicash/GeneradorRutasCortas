@@ -4,6 +4,9 @@
  */
 package Vista;
 
+import Controlador.CtrlTrabajadores;
+import Controlador.IControlador;
+
 import  javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
@@ -13,7 +16,7 @@ import java.awt.*;
  *
  * @author Andre Mujica
  */
-public class FrmTrabajadores extends JPanel {
+public class FrmTrabajadores extends IPanelView {
 
     private JLabel jLabel1;
     private JScrollPane jScrollPane1;
@@ -91,5 +94,10 @@ public class FrmTrabajadores extends JPanel {
         jpnBotones.add(jbtnEliminar);
 
         add(jpnBotones, BorderLayout.PAGE_END);
+    }
+
+    @Override
+    public IControlador generarControlador() {
+        return new CtrlTrabajadores(this);
     }
 }
