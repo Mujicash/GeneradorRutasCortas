@@ -6,6 +6,8 @@ import Vista.FrmPrincipal;
 import Vista.IPanelView;
 
 import javax.swing.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 /**
  * @author Andre Mujica
@@ -17,9 +19,9 @@ public class CtrlPrincipal implements IControlador {
 
     public CtrlPrincipal(FrmPrincipal vista) {
         this.vista = vista;
-        this.vista.addWindowListener(new java.awt.event.WindowAdapter() {
+        this.vista.addWindowListener(new WindowAdapter() {
             @Override
-            public void windowClosing(java.awt.event.WindowEvent e) {
+            public void windowClosing(WindowEvent e) {
                 formWindowClosing();
             }
         });
@@ -52,39 +54,48 @@ public class CtrlPrincipal implements IControlador {
         vista.setVisible(true);
     }
 
-    public void addNewPanel(JPanel newJPanel){
+    public void changePanel(JPanel newJPanel, IControlador ctrl){
         vista.jpnPrincipal.removeAll();
         vista.jpnPrincipal.add(newJPanel);
         vista.jpnPrincipal.repaint();
         vista.jpnPrincipal.revalidate();
+        ControllerStrategy strategy = new ControllerStrategy(ctrl);
+        strategy.executeStrategy();
     }
 
     private void jmitPerfilAction() {
         IPanelView info = IPanelView.Factory(Controllers.INFORMACIONUSUARIO);
         IControlador ctrl = info.generarControlador();
-        this.addNewPanel(info);
-        ctrl.iniciar();
-    }
-
-    private void jmitPedidosAction() {
-    }
-
-    private void jmitLocalesAction() {
-    }
-
-    private void jmitNodosAction() {
-    }
-
-    private void jmitTrabajadoresAction() {
-        IPanelView workers = IPanelView.Factory(Controllers.TRABAJADORES);
-        IControlador ctrl = workers.generarControlador();
-        this.addNewPanel(workers);
-        ctrl.iniciar();
+        this.changePanel(info, ctrl);
     }
 
     private void jmitSalirAction() {
         vista.dispose();
         formWindowClosing();
+    }
+
+    private void jmitTrabajadoresAction() {
+        IPanelView workers = IPanelView.Factory(Controllers.TRABAJADORES);
+        IControlador ctrl = workers.generarControlador();
+        this.changePanel(workers, ctrl);
+    }
+
+    private void jmitNodosAction() {
+        IPanelView nodos = IPanelView.Factory(Controllers.NODOS);
+        IControlador ctrl = nodos.generarControlador();
+        this.changePanel(nodos, ctrl);
+    }
+
+    private void jmitPedidosAction() {
+        IPanelView pedidos = IPanelView.Factory(Controllers.PEDIDOS);
+        IControlador ctrl = pedidos.generarControlador();
+        this.changePanel(pedidos, ctrl);
+    }
+
+    private void jmitLocalesAction() {
+        IPanelView locales = IPanelView.Factory(Controllers.LOCALES);
+        IControlador ctrl = locales.generarControlador();
+        this.changePanel(locales, ctrl);
     }
 
     private void formWindowClosing() {

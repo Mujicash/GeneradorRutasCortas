@@ -22,6 +22,7 @@ public abstract class IFrameView extends JFrame {
         switch (name) {
             case PRINCIPAL: vista = new FrmPrincipal(); break;
             case RUTAS: vista = new FrmCalcularRuta(); break;
+            case REGISTROTRABAJADOR: vista = new FrmRegistroTrabajador(); break;
         }
 
         return vista;

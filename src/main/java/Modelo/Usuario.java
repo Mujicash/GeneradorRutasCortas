@@ -8,7 +8,7 @@ import Vista.IFrameView;
 /**
  * @author Andre Mujica
  **/
-public abstract class Usuario {
+public class Usuario {
 
     private int idUsuario;
     private String usuario;

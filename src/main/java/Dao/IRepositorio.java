@@ -5,9 +5,9 @@ package Dao;
  **/
 public interface IRepositorio<T> {
 
-    public boolean crear(T t) throws UserException;
-    public T obtener(int id);
-    public boolean actualizar(T t);
-    public boolean eliminar(int id);
+    void crear(T t) throws UserException;
+    T obtener(int id);
+    boolean actualizar(T t);
+    boolean eliminar(int id);
 
 }

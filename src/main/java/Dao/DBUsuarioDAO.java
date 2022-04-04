@@ -130,7 +130,7 @@ public class DBUsuarioDAO implements UsuarioDAO {
     }
 
     @Override
-    public boolean crear(Usuario usuario) throws UserException {
+    public void crear(Usuario usuario) throws UserException {
         PreparedStatement ps;
 
         try {
@@ -145,7 +145,6 @@ public class DBUsuarioDAO implements UsuarioDAO {
 
             if(ps.executeUpdate() > 0){
                 usuario.setIdUsuario(this.leerIdUsuario(usuario.getUsuario()));
-                return true;
             } else{
                 throw new UserException("El usuario ya se encuentra registrado.");
             }
@@ -156,7 +155,6 @@ public class DBUsuarioDAO implements UsuarioDAO {
             conn.desconectar();
         }
 
-        return false;
     }
 
     @Override

@@ -10,6 +10,7 @@ import Controlador.IControlador;
 import  javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
+import java.util.Objects;
 
 
 /**
@@ -18,25 +19,22 @@ import java.awt.*;
  */
 public class FrmTrabajadores extends IPanelView {
 
-    private JLabel jLabel1;
-    private JScrollPane jScrollPane1;
     public JButton jbtnBuscar;
     public JButton jbtnEditar;
     public JButton jbtnEliminar;
     public JButton jbtnNuevo;
-    private JPanel jpnBotones;
-    private JPanel jpnCabecera;
     public JTable jtblTrabajadores;
     public JTextField jtxtCodigo;
 
     public FrmTrabajadores() {
-        jpnCabecera = new JPanel();
-        jLabel1 = new JLabel();
+        JPanel jpnCabecera = new JPanel();
+        JLabel jLabel1 = new JLabel();
+        JLabel jlblCodigoTrabajador = new JLabel();
         jtxtCodigo = new JTextField();
         jbtnBuscar = new JButton();
-        jScrollPane1 = new JScrollPane();
+        JScrollPane jScrollPane1 = new JScrollPane();
         jtblTrabajadores = new JTable();
-        jpnBotones = new JPanel();
+        JPanel jpnBotones = new JPanel();
         jbtnNuevo = new JButton();
         jbtnEditar = new JButton();
         jbtnEliminar = new JButton();
@@ -44,25 +42,32 @@ public class FrmTrabajadores extends IPanelView {
         setLayout(new BorderLayout());
 
         jpnCabecera.setPreferredSize(new Dimension(1300, 80));
-        jpnCabecera.setLayout(new FlowLayout(FlowLayout.LEFT, 15, 20));
+        jpnCabecera.setLayout(new FlowLayout(FlowLayout.LEFT, 20, 20));
 
-        jLabel1.setText("jLabel1");
-        jLabel1.setPreferredSize(new Dimension(46, 40));
+        jLabel1.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setEnabled(false);
+        jLabel1.setPreferredSize(new java.awt.Dimension(10, 40));
         jpnCabecera.add(jLabel1);
 
+        jlblCodigoTrabajador.setIcon(new ImageIcon(Objects.requireNonNull(getClass().getResource("/Imagenes/access_42px.png"))));
+        jlblCodigoTrabajador.setPreferredSize(new Dimension(45, 45));
+        jpnCabecera.add(jlblCodigoTrabajador);
+
         jtxtCodigo.setBackground(new Color(255, 255, 255));
-        jtxtCodigo.setFont(new Font("Monospaced", 0, 15)); // NOI18N
+        jtxtCodigo.setFont(new Font("Monospaced", Font.PLAIN, 15)); // NOI18N
         jtxtCodigo.setForeground(new Color(0, 0, 0));
         jtxtCodigo.setPreferredSize(new Dimension(200, 40));
         jpnCabecera.add(jtxtCodigo);
 
+        jbtnBuscar.setIcon(new ImageIcon(Objects.requireNonNull(getClass().getResource("/Imagenes/lupa.png"))));
         jbtnBuscar.setText("BUSCAR");
-        jbtnBuscar.setPreferredSize(new Dimension(100, 40));
+        jbtnBuscar.setPreferredSize(new Dimension(120, 40));
         jpnCabecera.add(jbtnBuscar);
 
         add(jpnCabecera, BorderLayout.PAGE_START);
 
-        jtblTrabajadores.setFont(new Font("Monospaced", 0, 15)); // NOI18N
+        jtblTrabajadores.setFont(new Font("Monospaced", Font.PLAIN, 15)); // NOI18N
         jtblTrabajadores.setModel(new DefaultTableModel(
                 new Object [][] {
 
@@ -78,19 +83,22 @@ public class FrmTrabajadores extends IPanelView {
         jpnBotones.setPreferredSize(new Dimension(1300, 80));
         jpnBotones.setLayout(new FlowLayout(FlowLayout.RIGHT, 20, 20));
 
-        jbtnNuevo.setFont(new Font("Monospaced", 0, 15)); // NOI18N
+        jbtnNuevo.setFont(new Font("Monospaced", Font.PLAIN, 15));
+        jbtnNuevo.setIcon(new ImageIcon(Objects.requireNonNull(getClass().getResource("/Imagenes/add.png"))));
         jbtnNuevo.setText("NUEVO");
         jbtnNuevo.setPreferredSize(new Dimension(140, 40));
         jpnBotones.add(jbtnNuevo);
 
-        jbtnEditar.setFont(new Font("Monospaced", 1, 15)); // NOI18N
+        jbtnEditar.setFont(new Font("Monospaced", Font.BOLD, 15));
+        jbtnEditar.setIcon(new ImageIcon(Objects.requireNonNull(getClass().getResource("/Imagenes/edit.png"))));
         jbtnEditar.setText("EDITAR");
         jbtnEditar.setPreferredSize(new Dimension(140, 40));
         jpnBotones.add(jbtnEditar);
 
-        jbtnEliminar.setFont(new Font("Monospaced", 1, 15)); // NOI18N
+        jbtnEliminar.setFont(new Font("Monospaced", Font.BOLD, 15));
+        jbtnEliminar.setIcon(new ImageIcon(Objects.requireNonNull(getClass().getResource("/Imagenes/delete.png"))));
         jbtnEliminar.setText("ELIMINAR");
-        jbtnEliminar.setPreferredSize(new Dimension(140, 40));
+        jbtnEliminar.setPreferredSize(new Dimension(160, 40));
         jpnBotones.add(jbtnEliminar);
 
         add(jpnBotones, BorderLayout.PAGE_END);

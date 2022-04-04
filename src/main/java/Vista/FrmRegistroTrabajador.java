@@ -1,22 +1,17 @@
 package Vista;
 
+import Controlador.CtrlRegistroTrabajador;
+import Controlador.IControlador;
+
 import javax.swing.*;
 import java.awt.*;
+import java.util.Objects;
 
 /**
  * @author Andre Mujica
  **/
-public class FrmRegistroTransportista extends JFrame {
+public class FrmRegistroTrabajador extends IFrameView {
 
-    private JLabel jLabel1;
-    private JLabel jLabel10;
-    private JLabel jLabel2;
-    private JLabel jLabel3;
-    private JLabel jLabel4;
-    private JLabel jLabel5;
-    private JLabel jLabel6;
-    private JLabel jLabel7;
-    private JLabel jLabel8;
     public JButton jbtnCancelar;
     public JButton jbtnRegistrar;
     public JComboBox<String> jcbTipoUsuario;
@@ -28,24 +23,25 @@ public class FrmRegistroTransportista extends JFrame {
     public JTextField jtxtNombres;
     public JTextField jtxtUsuario;
 
-    public FrmRegistroTransportista() {
-        jLabel1 = new JLabel();
-        jLabel2 = new JLabel();
-        jLabel3 = new JLabel();
+    public FrmRegistroTrabajador() {
+        super("REGISTRO DE TRABAJADOR");
+        JLabel jLabel1 = new JLabel();
+        JLabel jLabel2 = new JLabel();
+        JLabel jLabel3 = new JLabel();
         jtxtNombres = new JTextField();
         jtxtApellidos = new JTextField();
-        jLabel4 = new JLabel();
+        JLabel jLabel4 = new JLabel();
         jtxtUsuario = new JTextField();
-        jLabel5 = new JLabel();
+        JLabel jLabel5 = new JLabel();
         jtxtConstrasenia = new JPasswordField();
-        jLabel6 = new JLabel();
+        JLabel jLabel6 = new JLabel();
         jtxtConfirmacion = new JPasswordField();
         jbtnRegistrar = new JButton();
-        jLabel7 = new JLabel();
+        JLabel jLabel7 = new JLabel();
         jtxtCorreo = new JTextField();
-        jLabel8 = new JLabel();
+        JLabel jLabel8 = new JLabel();
         jtxtDNI = new JTextField();
-        jLabel10 = new JLabel();
+        JLabel jLabel10 = new JLabel();
         jcbTipoUsuario = new JComboBox<>();
         jbtnCancelar = new JButton();
 
@@ -59,47 +55,47 @@ public class FrmRegistroTransportista extends JFrame {
             }
         });*/
 
-        jLabel1.setFont(new Font("Dialog", 1, 24)); // NOI18N
+        jLabel1.setFont(new Font("Dialog", Font.BOLD, 24)); 
         jLabel1.setHorizontalAlignment(SwingConstants.CENTER);
         jLabel1.setText("REGISTRO DE TRABAJADOR");
 
-        jLabel2.setFont(new Font("Dialog", 0, 14)); // NOI18N
+        jLabel2.setFont(new Font("Dialog", Font.PLAIN, 14)); 
         jLabel2.setText("NOMBRES:");
 
-        jLabel3.setFont(new Font("Dialog", 0, 14)); // NOI18N
+        jLabel3.setFont(new Font("Dialog", Font.PLAIN, 14)); 
         jLabel3.setText("APELLIDOS:");
 
-        jtxtNombres.setFont(new Font("Dialog", 0, 14)); // NOI18N
+        jtxtNombres.setFont(new Font("Dialog", Font.PLAIN, 14)); 
 
-        jtxtApellidos.setFont(new Font("Dialog", 0, 14)); // NOI18N
+        jtxtApellidos.setFont(new Font("Dialog", Font.PLAIN, 14)); 
 
-        jLabel4.setFont(new Font("Dialog", 0, 14)); // NOI18N
+        jLabel4.setFont(new Font("Dialog", Font.PLAIN, 14)); 
         jLabel4.setText("USUARIO:");
 
-        jtxtUsuario.setFont(new Font("Dialog", 0, 14)); // NOI18N
+        jtxtUsuario.setFont(new Font("Dialog", Font.PLAIN, 14)); 
 
-        jLabel5.setFont(new Font("Dialog", 0, 14)); // NOI18N
+        jLabel5.setFont(new Font("Dialog", Font.PLAIN, 14)); 
         jLabel5.setText("CONTRASEÑA:");
 
-        jtxtConstrasenia.setFont(new Font("Dialog", 0, 14)); // NOI18N
+        jtxtConstrasenia.setFont(new Font("Dialog", Font.PLAIN, 14)); 
 
-        jLabel6.setFont(new Font("Dialog", 0, 14)); // NOI18N
+        jLabel6.setFont(new Font("Dialog", Font.PLAIN, 14)); 
         jLabel6.setText("<html>CONFIRMAR CONTRASEÑA:</html>");
 
-        jtxtConfirmacion.setFont(new Font("Dialog", 0, 14)); // NOI18N
+        jtxtConfirmacion.setFont(new Font("Dialog", Font.PLAIN, 14)); 
 
-        jbtnRegistrar.setFont(new Font("Dialog", 1, 14)); // NOI18N
-        jbtnRegistrar.setIcon(new ImageIcon(getClass().getResource("/Imagenes/add.png"))); // NOI18N
+        jbtnRegistrar.setFont(new Font("Dialog", Font.BOLD, 14)); 
+        jbtnRegistrar.setIcon(new ImageIcon(Objects.requireNonNull(getClass().getResource("/Imagenes/add.png")))); 
         jbtnRegistrar.setText("REGISTRAR");
         jbtnRegistrar.setPreferredSize(new Dimension(180, 40));
 
-        jLabel7.setFont(new Font("Dialog", 0, 14)); // NOI18N
+        jLabel7.setFont(new Font("Dialog", Font.PLAIN, 14)); 
         jLabel7.setText("CORREO:");
 
-        jLabel8.setFont(new Font("Dialog", 0, 14)); // NOI18N
+        jLabel8.setFont(new Font("Dialog", Font.PLAIN, 14)); 
         jLabel8.setText("DNI: ");
 
-        jLabel10.setFont(new Font("Dialog", 0, 14)); // NOI18N
+        jLabel10.setFont(new Font("Dialog", Font.PLAIN, 14)); 
         jLabel10.setText("TIPO: ");
 
         jcbTipoUsuario.setModel(new DefaultComboBoxModel<>(new String[] { "ADMINISTRADOR", "TRANSPORTISTA" }));
@@ -107,8 +103,8 @@ public class FrmRegistroTransportista extends JFrame {
         jcbTipoUsuario.setToolTipText("");
         jcbTipoUsuario.setPreferredSize(new Dimension(23, 34));
 
-        jbtnCancelar.setFont(new Font("Dialog", 1, 14)); // NOI18N
-        jbtnCancelar.setIcon(new ImageIcon(getClass().getResource("/Imagenes/x.png"))); // NOI18N
+        jbtnCancelar.setFont(new Font("Dialog", Font.BOLD, 14)); 
+        jbtnCancelar.setIcon(new ImageIcon(Objects.requireNonNull(getClass().getResource("/Imagenes/x.png")))); 
         jbtnCancelar.setText("CANCELAR");
         jbtnCancelar.setPreferredSize(new Dimension(150, 40));
 
@@ -195,5 +191,14 @@ public class FrmRegistroTransportista extends JFrame {
         );
 
         pack();
+    }
+
+    public static void main(String[] args) {
+        EventQueue.invokeLater(() -> (new FrmRegistroTrabajador()).setVisible(true));
+    }
+
+    @Override
+    public IControlador generarControlador() {
+        return new CtrlRegistroTrabajador(this);
     }
 }

@@ -1,6 +1,7 @@
 package Dao;
 
 import Conexion.Conexion;
+import Modelo.Transportista;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -39,4 +40,38 @@ public class DBTransportistaDAO implements TransportistaDAO {
     }
 
 
+    @Override
+    public void crear(Transportista transportista) throws UserException {
+        PreparedStatement ps;
+
+        try {
+            ps = conn.getConn().prepareStatement("insert into Tbl_Transportista(idUsuario,habilitado) values(?,?)");
+            ps.setInt(1, transportista.getIdUsuario());
+            ps.setBoolean(2, transportista.isHabilitado());
+
+            if(ps.executeUpdate() < 0){
+                throw new UserException("Error al registrar el transportista");
+            }
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        } finally{
+            conn.desconectar();
+        }
+    }
+
+    @Override
+    public Transportista obtener(int id) {
+        return null;
+    }
+
+    @Override
+    public boolean actualizar(Transportista transportista) {
+        return false;
+    }
+
+    @Override
+    public boolean eliminar(int id) {
+        return false;
+    }
 }

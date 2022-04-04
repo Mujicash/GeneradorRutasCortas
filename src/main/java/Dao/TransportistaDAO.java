@@ -1,10 +1,12 @@
 package Dao;
 
+import Modelo.Transportista;
+
 /**
  * @author Andre Mujica
  **/
-public interface TransportistaDAO {
+public interface TransportistaDAO extends IRepositorio<Transportista> {
 
-    public boolean estado(int idUsuario);
+    boolean estado(int idUsuario);
 
 }

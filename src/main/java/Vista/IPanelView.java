@@ -18,6 +18,9 @@ public abstract class IPanelView extends JPanel {
         switch (name) {
             case INFORMACIONUSUARIO: view = new FrmInformacionUsuario(); break;
             case TRABAJADORES: view = new FrmTrabajadores(); break;
+            case PEDIDOS: view = new FrmPedidos(); break;
+            case NODOS: view = new FrmNodos(); break;
+            case LOCALES: view = new FrmLocales(); break;
         }
 
         return view;

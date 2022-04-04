@@ -19,4 +19,7 @@ public class Transportista extends Usuario {
         this.habilitado = habilitado;
     }
 
+    public boolean isHabilitado() {
+        return habilitado;
+    }
 }

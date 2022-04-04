@@ -8,6 +8,9 @@ public enum Controllers {
     PRINCIPAL,
     RUTAS,
     INFORMACIONUSUARIO,
-    TRABAJADORES
-
+    TRABAJADORES,
+    PEDIDOS,
+    NODOS,
+    LOCALES,
+    REGISTROTRABAJADOR
 }

@@ -1,78 +1,79 @@
 package Vista;
 
+import Controlador.CtrlPedidos;
+import Controlador.IControlador;
+
 import javax.swing.*;
 import java.awt.*;
+import java.util.Objects;
 import javax.swing.table.DefaultTableModel;
 
 /**
  * @author Andre Mujica
  **/
-public class FrmPedidos extends JPanel {
+public class FrmPedidos extends IPanelView {
 
-    private JLabel jLabel1;
-    private JLabel jLabel2;
-    private JScrollPane jScrollPane1;
-    private JButton jbtnActualizar;
+    public JButton jbtnEliminar;
     public JButton jbtnBuscar;
     public JButton jbtnNuevo;
     public JButton jbtnOrdenar;
     public JComboBox<String> jcbParametro;
-    private JPanel jpnBotones;
-    private JPanel jpnCabecera;
     public JTable jtblTrabajadores;
     public JTextField jtxtCodigo;
 
     public FrmPedidos() {
-        jpnCabecera = new JPanel();
-        jLabel1 = new JLabel();
+        JPanel jpnCabecera = new JPanel();
+        JLabel jLabel1 = new JLabel();
         jtxtCodigo = new JTextField();
         jbtnBuscar = new JButton();
-        jLabel2 = new JLabel();
+        JLabel jLabel2 = new JLabel();
         jcbParametro = new JComboBox<>();
         jbtnOrdenar = new JButton();
-        jScrollPane1 = new JScrollPane();
+        JScrollPane jScrollPane1 = new JScrollPane();
         jtblTrabajadores = new JTable();
-        jpnBotones = new JPanel();
+        JPanel jpnBotones = new JPanel();
         jbtnNuevo = new JButton();
-        jbtnActualizar = new JButton();
+        jbtnEliminar = new JButton();
 
         setLayout(new BorderLayout());
 
         jpnCabecera.setPreferredSize(new Dimension(1300, 80));
         jpnCabecera.setLayout(new FlowLayout(FlowLayout.LEFT, 15, 20));
 
-        jLabel1.setText("jLabel1");
-        jLabel1.setPreferredSize(new Dimension(46, 40));
+        jLabel1.setIcon(new ImageIcon(Objects.requireNonNull(getClass().getResource("/Imagenes/order.png"))));
+        jLabel1.setPreferredSize(new Dimension(50, 50));
         jpnCabecera.add(jLabel1);
 
         jtxtCodigo.setBackground(new Color(255, 255, 255));
-        jtxtCodigo.setFont(new Font("Monospaced", 0, 15)); // NOI18N
+        jtxtCodigo.setFont(new Font("Monospaced", Font.PLAIN, 15)); // NOI18N
         jtxtCodigo.setForeground(new Color(0, 0, 0));
         jtxtCodigo.setPreferredSize(new Dimension(200, 40));
         jpnCabecera.add(jtxtCodigo);
 
-        jbtnBuscar.setFont(new Font("Monospaced", 1, 15)); // NOI18N
+        jbtnBuscar.setFont(new Font("Monospaced", Font.BOLD, 15));
+        jbtnBuscar.setIcon(new ImageIcon(Objects.requireNonNull(getClass().getResource("/Imagenes/lupa.png"))));
         jbtnBuscar.setText("BUSCAR");
-        jbtnBuscar.setPreferredSize(new Dimension(100, 40));
+        jbtnBuscar.setPreferredSize(new Dimension(120, 40));
         jpnCabecera.add(jbtnBuscar);
 
         jLabel2.setEnabled(false);
         jLabel2.setPreferredSize(new Dimension(400, 40));
         jpnCabecera.add(jLabel2);
 
-        jcbParametro.setFont(new Font("Monospaced", 1, 15)); // NOI18N
+        jcbParametro.setFont(new Font("Monospaced", Font.BOLD, 15));
         jcbParametro.setModel(new DefaultComboBoxModel<>(new String[] { "SELECCIONE PARAMETRO", "ID", "LOCAL", "FECHA DE REGISTRO" }));
         jcbParametro.setPreferredSize(new Dimension(250, 40));
         jpnCabecera.add(jcbParametro);
 
-        jbtnOrdenar.setFont(new Font("Monospaced", 1, 15)); // NOI18N
+        jbtnOrdenar.setFont(new Font("Monospaced", Font.BOLD, 15));
+        jbtnOrdenar.setIcon(new ImageIcon(Objects.requireNonNull(getClass().getResource("/Imagenes/order.png"))));
         jbtnOrdenar.setText("ORDENAR");
         jbtnOrdenar.setPreferredSize(new Dimension(150, 40));
         jpnCabecera.add(jbtnOrdenar);
 
         add(jpnCabecera, BorderLayout.PAGE_START);
 
-        jtblTrabajadores.setFont(new Font("Monospaced", 0, 15)); // NOI18N
+        jtblTrabajadores.setFont(new Font("Monospaced", Font.PLAIN, 15)); // NOI18N
         jtblTrabajadores.setModel(new DefaultTableModel(
                 new Object [][] {
 
@@ -88,16 +89,23 @@ public class FrmPedidos extends JPanel {
         jpnBotones.setPreferredSize(new Dimension(1300, 80));
         jpnBotones.setLayout(new FlowLayout(FlowLayout.RIGHT, 20, 20));
 
-        jbtnNuevo.setFont(new Font("Monospaced", 1, 15)); // NOI18N
+        jbtnNuevo.setFont(new Font("Monospaced", Font.BOLD, 15));
+        jbtnNuevo.setIcon(new ImageIcon(Objects.requireNonNull(getClass().getResource("/Imagenes/add.png"))));
         jbtnNuevo.setText("NUEVO");
         jbtnNuevo.setPreferredSize(new Dimension(140, 40));
         jpnBotones.add(jbtnNuevo);
 
-        jbtnActualizar.setFont(new Font("Monospaced", 1, 15)); // NOI18N
-        jbtnActualizar.setText("ACTUALIZAR");
-        jbtnActualizar.setPreferredSize(new Dimension(140, 40));
-        jpnBotones.add(jbtnActualizar);
+        jbtnEliminar.setFont(new Font("Monospaced", Font.BOLD, 15));
+        jbtnEliminar.setIcon(new ImageIcon(Objects.requireNonNull(getClass().getResource("/Imagenes/delete.png"))));
+        jbtnEliminar.setText("ELIMINAR");
+        jbtnEliminar.setPreferredSize(new Dimension(160, 40));
+        jpnBotones.add(jbtnEliminar);
 
         add(jpnBotones, BorderLayout.PAGE_END);
+    }
+
+    @Override
+    public IControlador generarControlador() {
+        return new CtrlPedidos(this);
     }
 }
