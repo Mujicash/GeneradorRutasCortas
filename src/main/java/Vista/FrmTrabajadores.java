@@ -23,7 +23,7 @@ public class FrmTrabajadores extends IPanelView {
     public JButton jbtnEditar;
     public JButton jbtnEliminar;
     public JButton jbtnNuevo;
-    public JTable jtblTrabajadores;
+    public static JTable jtblTrabajadores;
     public JTextField jtxtCodigo;
 
     public FrmTrabajadores() {

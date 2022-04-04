@@ -4,10 +4,13 @@ import Conexion.Conexion;
 import Modelo.Administrador;
 import Modelo.Transportista;
 import Modelo.Usuario;
+import Modelo.UsuarioDTO;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Andre Mujica
@@ -127,6 +130,26 @@ public class DBUsuarioDAO implements UsuarioDAO {
             conn.desconectar();
         }
 
+    }
+
+    @Override
+    public List<UsuarioDTO> readAll() {
+        PreparedStatement ps;
+        ResultSet rs;
+        List<UsuarioDTO> users = new ArrayList<>();
+
+        try {
+            ps = conn.getConn().prepareStatement("SELECT U.usuario, CONCAT(U.nombres,' ',U.apellidos) as Nombre, U.DNI, U.correo, T.nombre from Tbl_Usuario U, Tbl_TipoUsuario T where U.tipoUsuario = T.idTipoUsuario");
+            rs = ps.executeQuery();
+
+            while(rs.next()) {
+                users.add(new UsuarioDTO(rs.getString(1), rs.getString(2),rs.getString(3), rs.getString(4), rs.getString(5)));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return users;
     }
 
     @Override

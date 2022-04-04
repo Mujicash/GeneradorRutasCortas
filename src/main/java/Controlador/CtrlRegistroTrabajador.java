@@ -4,10 +4,7 @@ import Aplicacion.Servicios.RegistrarNuevoUsuario;
 import Dao.DBUsuarioDAO;
 import Dao.UserException;
 import Dao.UsuarioDAO;
-import Modelo.IPasswordHashLib;
-import Modelo.Sha1;
-import Modelo.Usuario;
-import Modelo.WorkerRegistrationValidations;
+import Modelo.*;
 import Vista.FrmRegistroTrabajador;
 
 import javax.swing.*;
@@ -71,13 +68,17 @@ public class CtrlRegistroTrabajador implements IControlador {
                 String message = rnu.registrar(newUser);
                 JOptionPane.showMessageDialog(null, message);
 
-                limpiarCajas();
+                CtrlTrabajadores.addUser(new UsuarioDTO(vista.jtxtUsuario.getText(),
+                        vista.jtxtNombres.getText()+vista.jtxtApellidos.getText(),
+                        vista.jtxtDNI.getText(),vista.jtxtCorreo.getText(), (String) vista.jcbTipoUsuario.getSelectedItem())
+                );
+                vista.dispose();
             }
 
         } catch (UserException e) {
             JOptionPane.showMessageDialog(null,e.getMessage(), "Error Registro de Trabajador", JOptionPane.ERROR_MESSAGE);
         }
-
+        limpiarCajas();
     }
 
     public static void main(String[] args) {

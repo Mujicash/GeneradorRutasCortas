@@ -1,15 +1,19 @@
 package Dao;
 
 import Modelo.Usuario;
+import Modelo.UsuarioDTO;
+
+import java.util.List;
 
 /**
  * @author Andre Mujica
  **/
 public interface UsuarioDAO extends IRepositorio<Usuario> {
 
-    public Usuario exists(String usuario, String contrasenia) throws UserException;
-    public int leerIdUsuario(String username);
-    public void existsByUsername(String username) throws UserException;
-    public void existsByEmail(String email) throws UserException;
+    Usuario exists(String usuario, String contrasenia) throws UserException;
+    int leerIdUsuario(String username);
+    void existsByUsername(String username) throws UserException;
+    void existsByEmail(String email) throws UserException;
+    List<UsuarioDTO> readAll();
 
 }
