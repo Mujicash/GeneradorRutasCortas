@@ -15,5 +15,6 @@ public interface UsuarioDAO extends IRepositorio<Usuario> {
     void existsByUsername(String username) throws UserException;
     void existsByEmail(String email) throws UserException;
     List<UsuarioDTO> readAll();
+    Usuario readByUserName(String username);
 
 }

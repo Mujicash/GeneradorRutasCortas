@@ -7,7 +7,7 @@ public interface IRepositorio<T> {
 
     void crear(T t) throws UserException;
     T obtener(int id);
-    boolean actualizar(T t);
+    void actualizar(T t) throws UserException;
     boolean eliminar(int id);
 
 }

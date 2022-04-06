@@ -19,7 +19,6 @@ import java.util.Objects;
  */
 public class FrmTrabajadores extends IPanelView {
 
-    public JButton jbtnBuscar;
     public JButton jbtnEditar;
     public JButton jbtnEliminar;
     public JButton jbtnNuevo;
@@ -31,7 +30,6 @@ public class FrmTrabajadores extends IPanelView {
         JLabel jLabel1 = new JLabel();
         JLabel jlblCodigoTrabajador = new JLabel();
         jtxtCodigo = new JTextField();
-        jbtnBuscar = new JButton();
         JScrollPane jScrollPane1 = new JScrollPane();
         jtblTrabajadores = new JTable();
         JPanel jpnBotones = new JPanel();
@@ -59,11 +57,6 @@ public class FrmTrabajadores extends IPanelView {
         jtxtCodigo.setForeground(new Color(0, 0, 0));
         jtxtCodigo.setPreferredSize(new Dimension(200, 40));
         jpnCabecera.add(jtxtCodigo);
-
-        jbtnBuscar.setIcon(new ImageIcon(Objects.requireNonNull(getClass().getResource("/Imagenes/lupa.png"))));
-        jbtnBuscar.setText("BUSCAR");
-        jbtnBuscar.setPreferredSize(new Dimension(120, 40));
-        jpnCabecera.add(jbtnBuscar);
 
         add(jpnCabecera, BorderLayout.PAGE_START);
 

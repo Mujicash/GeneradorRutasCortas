@@ -153,6 +153,37 @@ public class DBUsuarioDAO implements UsuarioDAO {
     }
 
     @Override
+    public Usuario readByUserName(String username) {
+        PreparedStatement ps;
+        ResultSet rs;
+        Usuario user = null;
+
+        try {
+            ps = conn.getConn().prepareStatement("select idUsuario, nombres, apellidos, correo, DNI, tipoUsuario from Tbl_Usuario where usuario =?");
+            ps.setString(1, username);
+
+            rs = ps.executeQuery();
+
+            if(rs.next()){//Existe el usuario
+                if(rs.getInt(6) == 2){//Transportista
+                    TransportistaDAO cons = new DBTransportistaDAO();
+                    user = new Transportista(rs.getInt(1), username, "", rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getInt(6), cons.estado(rs.getInt(1)));
+                }
+                else{
+                    user = new Administrador(rs.getInt(1), username, "", rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getInt(6));
+                }
+            }
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        } finally{
+            conn.desconectar();
+        }
+
+        return user;
+    }
+
+    @Override
     public void crear(Usuario usuario) throws UserException {
         PreparedStatement ps;
 
@@ -186,8 +217,23 @@ public class DBUsuarioDAO implements UsuarioDAO {
     }
 
     @Override
-    public boolean actualizar(Usuario usuario) {
-        return false;
+    public void actualizar(Usuario usuario) throws UserException {
+        PreparedStatement ps;
+
+        try {
+            ps = conn.getConn().prepareStatement("update Tbl_Usuario set nombres = ?, apellidos = ?, DNI = ?, correo = ? where idUsuario = ?");
+            ps.setString(1, usuario.getNombres());
+            ps.setString(2, usuario.getApellidos());
+            ps.setString(3, usuario.getDNI());
+            ps.setString(4, usuario.getCorreo());
+            ps.setInt(5, usuario.getIdUsuario());
+
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new UserException("Error al actualizar datos de usuario");
+        }
+
     }
 
     @Override

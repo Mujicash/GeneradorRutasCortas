@@ -6,7 +6,6 @@ import Modelo.Transportista;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.logging.Logger;
 
 /**
  * @author Andre Mujica
@@ -66,8 +65,20 @@ public class DBTransportistaDAO implements TransportistaDAO {
     }
 
     @Override
-    public boolean actualizar(Transportista transportista) {
-        return false;
+    public void actualizar(Transportista transportista) throws UserException {
+        PreparedStatement ps;
+
+        try {
+            ps = conn.getConn().prepareStatement("update Tbl_Transportista set habilitado = ? where idUsuario = ?");
+            ps.setInt(1, transportista.isHabilitado()? 1: 0);
+            ps.setInt(2, transportista.getIdUsuario());
+            ps.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new UserException("Error al actualizar los datos del transportista");
+        }
+
     }
 
     @Override

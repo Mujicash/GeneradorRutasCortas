@@ -38,8 +38,8 @@ public class DBAdministradorDAO implements IRepositorio<Administrador> {
     }
 
     @Override
-    public boolean actualizar(Administrador administrador) {
-        return false;
+    public void actualizar(Administrador administrador) throws UserException {
+
     }
 
     @Override
