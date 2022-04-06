@@ -83,7 +83,7 @@ public class CtrlTrabajadores implements IControlador {
         DefaultTableModel modelTrabajadores = new DefaultTableModel(null, columns) {
             @Override
             public boolean isCellEditable(int row, int column) {
-                return true;
+                return false;
             }
         };
 

@@ -62,6 +62,10 @@ public class CtrlActualizarTrabajador implements IControlador {
             userSelected.setDNI(vista.jtxtDNI.getText());
             userSelected.setCorreo(vista.jtxtCorreo.getText());
 
+            if(userSelected instanceof Transportista) {
+                ((Transportista) userSelected).setHabilitado(vista.jrbSi.isSelected());
+            }
+
             UsuarioDAO repository = new DBUsuarioDAO();
             UpdateWorkerData uwd = new UpdateWorkerData(repository);
             String message = uwd.actualizar(userSelected);
